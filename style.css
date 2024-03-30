@@ -1,0 +1,707 @@
+@charset "utf-8";
+/*Importing fonts for the Overall page heading*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+/* importing fonts for the section heading */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+/* Plan - Create 3 basic grids (Header, Main, Footer) and use the container grid to form them in a proper layout. */
+
+/* Creating a  central container grid to encompass everything in its proper layout */
+#container{
+    display:grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+    width:fit-content;
+    margin:auto;
+    background-color: rgb(246, 241, 241);
+}
+
+/* using the header tag to form a grid that will contain the h1 and p in its respective tag */
+header{
+    /* To use grids, the display must be grid */
+    display:grid;
+    /* you have to allocate the number of rows and columns in your grid */
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+    /* I am creating an area of vars (date and header) that will allocate the position of elements
+    associated with those vars on this grid */
+    /* date var will span from the first to the second column of the first row, 
+    the header var will span from the first to the second column of the second row */
+    grid-template-areas: "date date"
+                         "heading heading";
+    /* I am assigning this entire grid a position in the main container grid. */
+    grid-area: header;
+}
+
+header h1{
+    /* using color to change the color of the text */
+    color: rgb(229, 120, 19);
+    /* using the imported font for the heading */
+    font-family: 'Source Serif 4', 'Source Serif';
+    /* using font size to manipulate the size of the font */
+    font-size: 11rem;
+    /* using weight to manipulate the thickness of the font */
+    font-weight: 300;
+    /* using letter-spacing to manipulate the spacing b/w the individual letters */
+    letter-spacing: 1.5rem;
+    /* using the margin property to create a custom margin for the font following the (top, right, bottom, left) format. */
+    margin: -2rem 0 0 0;
+    /* centering the text */
+    text-align: center;
+    /* using text-transform to make the heading lowercase */
+    text-transform: lowercase;
+    grid-area: heading;
+}
+
+header p{
+    font-family: 'Source Serif';
+    /* using font size to manipulate the size of the font */
+    font-size: 1.2rem;
+    /* I am giving this tag the date position in the header grid. */
+    grid-area: date;
+    /* converting the text into uppercase using text transform */
+    text-transform: uppercase;
+    margin: 1rem 0 0 4rem; /* Adjust the percentage value as needed */
+
+}
+
+/* creating a grid for the entire ol elements of the first section.*/
+/* I will be creating separate grids for all 3 sections which will then be assigned 
+a position in the main grid (not referring to the main "container" grid) */
+section:first-of-type{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas: "header1"
+                         "section-content";
+    height: fit-content;
+    width:fit-content;
+    /* giving the entire section grid a position in the main grid */
+    grid-area: section1;
+}
+
+/* Customizing the headers of the all 3 sections for universal changes */
+section h2{
+    font-family: 'Playfair Display', sans-serif;
+    text-transform: lowercase;
+    font-weight: 500;
+}
+
+/* bespokely cusomizing the header of the first section */
+section:first-of-type>h2{
+    font-size: 3rem;
+    margin: auto 0 -1rem 0;
+    border-top: green solid 1rem;
+    /* giving it a position in the first section's grid. */
+    grid-area: header1;
+    width: 38rem;
+
+}
+
+/* customizing the ordered-list of the first section */
+section:first-of-type>ol{
+    /*giving the entire list of this section a position in the first section's grid */
+    grid-area: section-content;
+    margin: .5rem 0 0 0;
+
+}
+
+/* Apply flex display to the list item */
+li[value="11"], li[value="12"], li[value="16"],
+li[value="20"], li[value="26"]{
+    display: flex;
+    /* have to do this to manipulate and maintain the appearance of the numeric val of the list items */
+    position: relative;
+}
+
+/* Position the list marker of all the values in the first section as it was impossible for me 
+to manipulate the h3 and p of these lists without accidentally losing the numeric marker without
+creating targeting something before each marker marker. */
+li[value="11"]::before, li[value="12"]::before, 
+li[value="16"]::before, li[value="20"]::before,
+li[value="26"]::before{
+    content: attr(value); /* Use the value attribute as the content */
+    font-weight: bold; /* Make the list marker bold */
+    position: absolute; /* Position it relative to the list item */
+}
+
+/* Style the heading within the list item */
+section:first-of-type h3{
+    color: rgb(47, 167, 47);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+}
+
+/* Style the paragraph within the list item with value 11*/
+li[value="11"] p {
+    text-transform: capitalize;
+    margin-top: 1.3rem;
+}
+
+li[value = "11"]::before{
+    left: 0; 
+    top: 1.3rem; 
+}
+
+li[value="11"] h3 {
+    margin-right: .5rem; 
+    margin-left: 2rem;
+}
+
+/* Position the list marker */
+li[value="12"]::before {
+    left: 0; 
+    top: -1rem;
+}
+
+/* I do this for all values in all lists in the first section, value 12, 16, 20 and 26 */
+li[value="12"] h3 {
+    margin-right: 3rem; 
+    margin-left: 2rem;
+    margin-top: -1rem;
+}
+
+/* Position the list marker */
+li[value="12"] p {
+    margin-top: -1rem;
+    width: 20rem;
+}
+
+li[value="16"]::before {
+    left: 0; 
+    top: -1rem; 
+}
+
+li[value="16"] h3 {
+    margin-top: -1rem;
+    margin-right: 1rem;
+    margin-left: 2rem;
+}
+
+li[value="16"] p {
+    margin-top: -0.9rem;
+    width: 20rem;
+}
+
+/* Position the list marker */
+li[value="20"]::before {
+    left: 0; 
+    top: -1rem; 
+}
+
+li[value="20"] h3 {
+    margin-top: -1rem;
+    margin-right: .7rem;
+    margin-left: 2rem;
+    width:11rem;
+}
+
+li[value="20"] p {
+    margin-top: -0.9rem;
+    width: 20rem;
+}
+
+li[value="26"]::before {
+    left: 0; 
+    top: -1rem; 
+}
+
+li[value="26"] h3 {
+    margin-top: -1rem;
+    margin-right: 1rem; 
+    margin-left: 2rem;
+    margin-bottom: -1rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="26"] p {
+    margin-top: -0.9rem;
+    width: 20rem;
+}
+
+
+/* Creating a grid for all the items in the second section */
+/* Basically doing the same thing for section2 and 3 that I did for section1 */
+section:nth-child(2){
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas: "header2"
+                         "section-content2";
+    width:fit-content;
+    height: fit-content;
+    /* giving the entire section 2 a position in the main grid */
+    grid-area: section2;
+}
+
+section:nth-child(2)>h2{
+    font-size: 3rem;
+    margin: auto 0 -1rem 0;
+    border-top: rgb(223, 45, 75) solid 1rem;
+    grid-area: header2;
+    /* giving the header a position in the second section's grid */
+    width: 38rem;
+
+}
+
+section:nth-child(2)>ol{
+    /* giving the list items a position in the second section's grid */
+    grid-area: section-content2;
+    margin: .5rem 6.1rem 0 0; 
+}
+
+/* Apply flex display to the list item */
+li[value="31"], li[value="32"], li[value="36"]{
+    display: flex;
+    position: relative; 
+}
+
+/* Position the list marker */
+li[value="31"]::before, li[value="32"]::before, 
+li[value="36"]::before{
+    content: attr(value); /* Use the value attribute as the content */
+    font-weight: bold; /* Make the list marker bold */
+    position: absolute; /* Position it relative to the list item */
+}
+
+li[value = "31"]::before{
+    left: 0; 
+    top: 1.3rem; 
+}
+
+/* Style the heading within the list item */
+section:nth-child(2) h3{
+    color: rgb(223, 45, 75);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+
+}
+
+li[value="31"] h3 {
+    margin-right: .5rem; 
+    margin-left: 2rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="31"] p {
+    /* capitalize = titlecase for all words in a para */
+    text-transform: capitalize;
+    margin-top: 1.3rem;
+    margin-left: 1.5rem;
+}
+
+/* Position the list marker */
+li[value="32"]::before {
+    left: 0; 
+    top: -1rem; 
+}
+
+/* Style the heading within the list item */
+li[value="32"] h3 {
+    margin-right: .5rem; 
+    margin-left: 2rem;
+    margin-top: -1.1rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="32"] p {
+    margin-top: -1rem;
+    width: 20rem;
+}
+
+/* Position the list marker */
+li[value="36"]::before {
+    left: 0;
+    top: -1rem; 
+}
+
+/* Style the heading within the list item */
+li[value="36"] h3 {
+    margin-top: -1.1rem;
+    margin-right: 1.5rem;
+    margin-left: 2rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="36"] p {
+    margin-top: -1.1rem;
+    width: 20rem;
+}
+
+/* Creating a grid for the third section */
+section:nth-child(3){
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas: "header3"
+                         "section-content3";
+    width:fit-content;
+    height: fit-content;
+    /* giving the entire section3 a position in the main grid */
+    grid-area: section3;
+}
+
+section:nth-child(3)>h2{
+    font-size: 3rem;
+    margin: auto 0 -1rem 0;
+    border-top: rgb(18, 132, 226) solid 1rem;
+    /* giving the header a position in section 3's grid */
+    grid-area: header3;
+    width: 38rem;
+}
+
+section:nth-last-child(3)>ol{
+    /* giving the entire list a position in section 3's grid */
+    grid-area: section-content3;
+    margin: .5rem 0 0 0;
+}
+
+/* Apply flex display to the list item */
+li[value="47"], li[value="49"], li[value="54"],
+li[value="55"],section:nth-child(3) li[value="56"], 
+li[value="68"], li[value="72"], 
+section:nth-child(3) li[value="76"]{
+    display: flex;
+    position: relative; 
+}
+
+/* Position the list marker */
+li[value="47"]::before, li[value="49"]::before, 
+li[value="54"]::before, li[value="55"]::before,
+section:nth-child(3) li[value="56"]::before, 
+li[value="68"]::before, li[value="72"]::before, 
+section:nth-child(3) li[value="76"]::before {
+    content: attr(value); /* Use the value attribute as the content */
+    font-weight: bold; /* Make the list marker bold */
+    position: absolute; /* Position it relative to the list item */
+}
+
+/* Style the heading within the list item */
+section:nth-child(3) h3{
+    color: rgb(18, 132, 226);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+}
+
+li[value = "47"]::before{
+    left: 0; 
+    top: 1.3rem; 
+}
+
+li[value="47"] h3 {
+    margin-right: .5rem; 
+    margin-left: 2rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="47"] p {
+    text-transform: capitalize;
+    margin-top: 1.3rem;
+    margin-left: .7rem;
+}
+
+/* Position the list marker */
+li[value="49"]::before {
+    left: 0; 
+    top: -1rem;
+}
+
+/* Style the heading within the list item */
+li[value="49"] h3 {
+    margin-left: 2rem;
+    margin-top: -1rem;
+    width:11rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="49"] p {
+    margin-top: -0.9rem;
+    margin-left:-1rem;
+    width: 23.2rem
+}
+
+/* Position the list marker */
+li[value="54"]::before {
+    left: 0; 
+    top: -1rem; 
+}
+
+/* Style the heading within the list item */
+li[value="54"] h3 {
+    margin-top: -1rem;
+    margin-right:.7rem; 
+    margin-left: 2rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="54"] p {
+    margin-top: -0.9rem;
+    width: 23rem;
+    margin-left:.5rem;
+}
+
+/* Position the list marker */
+li[value="55"]::before {
+    left: 0; 
+    top: -1rem; 
+}
+
+/* Style the heading within the list item */
+li[value="55"] h3 {
+    margin-top: -1rem;
+    margin-right: 3.3rem;
+    margin-left: 2rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="55"] p {
+    margin-top: -0.9rem;
+    width: 20rem;
+    margin-left:.5rem;
+}
+
+/* Position the list marker */
+section:nth-child(3) li[value="56"]::before {
+    left: 0; 
+    top: -1rem; 
+}
+
+/* Style the heading within the list item */
+section:nth-child(3) li[value="56"] h3 {
+    margin-top: -1rem;
+    margin-right: 1rem;
+    margin-left: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Style the paragraph within the list item */
+section:nth-child(3) li[value="56"] p {
+    margin-top: -0.9rem;
+    width: 18rem;
+}
+
+/* Position the list marker */
+li[value="68"]::before {
+    left: 0;
+    top: -1rem; 
+}
+
+/* Style the heading within the list item */
+li[value="68"] h3 {
+    margin-top: -1rem;
+    margin-right:.7rem;
+    margin-left:2rem;
+    width:14rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="68"] p {
+    margin-top: -0.9rem;
+    width: 19rem;
+}
+
+/* Position the list marker */
+li[value="72"]::before {
+    left: 0; 
+    top: -1rem; 
+}
+
+/* Style the heading within the list item */
+li[value="72"] h3 {
+    margin-top: -1rem;
+    margin-right: .5rem;
+    margin-left: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Style the paragraph within the list item */
+li[value="72"] p {
+    margin-top: -0.9rem;
+    width: 20rem;
+    margin-left: .5rem;
+}
+
+/* Position the list marker */
+section:nth-child(3) li[value="76"]::before {
+    left: 0; 
+    top: -1rem; 
+}
+
+/* Style the heading within the list item */
+section:nth-child(3) li[value="76"] h3 {
+    margin-top: -1rem;
+    margin-right: 10px;
+    margin-left: 2rem;
+    margin-bottom: 0;
+}
+
+/* Style the paragraph within the list item */
+section:nth-child(3) li[value="76"] p {
+    margin-top: -0.9rem;
+    width: 20rem;
+    margin-left: 3.5rem; 
+}
+
+/* Creating a grid for for the ol elements second aside tag*/
+aside + aside ol{
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto auto auto;
+    row-gap: 0.4rem;
+    grid-template-areas:
+                        "listitem1" 
+                        "listitem2" 
+                        "listitem3" 
+                        "listitem4" 
+                        "listitem5" 
+                        "listitem6";
+    width: fit-content;
+    /* giving the entire list in the second aside tag a position in the second aside tag's grid */
+    grid-area: listitems;
+    margin-top: 0rem;
+}
+
+/* give each list item a position in the grid above */
+aside + aside ol > li[value = "76"]{
+    grid-area: listitem1;
+}
+li[value = "92"]{
+    grid-area: listitem2;
+    width:15rem;
+}
+aside + aside ol > li[value = "56"]{
+    grid-area: listitem3;
+    width: 19rem;
+}
+li[value = "98"]{
+    grid-area: listitem4;
+}
+li[value = "121"]{
+    grid-area: listitem5;
+}
+li[value = "86"]{
+    grid-area: listitem6;
+}
+
+/* selecting the heading of the second aside */
+aside:last-child h2{
+    font-family: "Playfair Display", sans-serif;
+    text-transform: lowercase;
+    font-weight: 550;
+    grid-area: header;
+    font-size: 3rem;
+    margin: 0 6rem 0 0;
+    width: 18rem;
+}
+
+/* selecting the italcized parts of the paragraph in the second aside tag. */
+aside + aside p em{
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* customizing the subheading of the second aside */
+aside:last-child p{
+    grid-area: subheader;
+    width: 24rem;
+    margin: 0.3rem 0rem 1rem 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+
+}
+
+/* creating a grid with all the elements of the second aside tag  */
+aside:last-child{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+                        "header" 
+                        "subheader" 
+                        "listitems";
+    background-color: rgb(249, 249, 237);
+    width: fit-content;
+    height: fit-content;
+    padding: 0 1rem;
+    justify-items: center;
+    margin: 1.5rem 0rem 1rem 5.6rem;
+    border: solid .2rem orange;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    /* giving this grid a position in the main grid */
+    grid-area: subsection;
+}
+
+
+/* Creating a grid for the image */
+aside:first-of-type{
+    display: grid;
+    width: fit-content;
+    grid-area: image;
+    height: fit-content;
+    margin: 0 0 0 3.5rem;
+}
+
+/* customizing the image */
+img{
+    width:28.5rem;
+}
+
+/* customizing the footer */
+footer{
+    display: flex;
+    /* making it appear at the right end of the screen */
+    justify-content: flex-end;
+    text-transform: uppercase;
+    word-spacing: .2rem;
+    margin: 0 2rem 0 0;
+    /* giving the contents of this tag a position in the central container grid */
+    grid-area: footer;
+}
+
+/* selecting the dot in the footer to change its color */
+footer em{
+    color:rgb(229, 120, 19);
+    font-size: 1.2rem;
+}
+
+/* selecting the number in the footer to change its size */
+footer strong{
+    font-size: 1.2rem;
+    padding:1rem;
+
+}
+
+/* creating a main grid with all the elements in its proper layout. */
+main {
+    display: grid;
+    grid-template-columns: 34rem 41rem;
+    grid-template-rows: 0fr 0fr 10rem 1fr;
+    grid-template-areas:
+  "image      section1" 
+  "image      section2" 
+  "image      section3" 
+  "subsection  main    ";
+    width: fit-content;
+    margin: auto;
+    grid-area: main;
+  }
+
+/* making the figcaption value absolute so that I can move it independently later. */
+/* and then later failing to manipulate it properly and just giving up and making them invisible instead. */
+figcaption{
+    position: absolute;
+    top: 76rem;
+    transform: rotate(270deg);
+    left: 78rem;
+    visibility: hidden;
+}
+
